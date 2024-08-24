@@ -1,14 +1,13 @@
-"use client";
 import CursorFollower from "@/components/CursorFollower";
 import HeroSection from "@/components/HeroSection";
-import useCursorStore from "@/store/store";
-import Image from "next/image";
+import SkillSection from "@/components/SkillSection";
 
 export default function Home() {
   return (
     <main>
       <CursorFollower />
       <HeroSection />
+      <SkillSection />
     </main>
   );
 }
