@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useCursorStore from "@/store/store";
 
@@ -7,32 +7,42 @@ export default function CursorFollower() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isOnScreen, setIsOnScreen] = useState(false);
   const { isVisible } = useCursorStore() as { isVisible: boolean };
-  const lastKnownPosition = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
+    let animationFrameId: number;
+    let lastUpdateTime = 0;
+    const updateInterval = 1000 / 60; // 60 FPS
+
     const updateMousePosition = (ev: MouseEvent) => {
-      const newPosition = { x: ev.clientX, y: ev.clientY };
-      setMousePosition(newPosition);
-      lastKnownPosition.current = newPosition;
+      const currentTime = performance.now();
+      if (currentTime - lastUpdateTime > updateInterval) {
+        setMousePosition({ x: ev.clientX, y: ev.clientY });
+        lastUpdateTime = currentTime;
+      }
     };
 
-    const handleMouseEnter = (ev: MouseEvent) => {
+    const handleMouseMove = (ev: MouseEvent) => {
+      animationFrameId = requestAnimationFrame(() => updateMousePosition(ev));
+    };
+
+    const handleMouseEnter = () => {
       setIsOnScreen(true);
-      updateMousePosition(ev);
     };
 
     const handleMouseLeave = () => {
       setIsOnScreen(false);
+      cancelAnimationFrame(animationFrameId);
     };
 
-    window.addEventListener("mousemove", updateMousePosition);
+    document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseenter", handleMouseEnter);
     document.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      window.removeEventListener("mousemove", updateMousePosition);
+      document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseenter", handleMouseEnter);
       document.removeEventListener("mouseleave", handleMouseLeave);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
@@ -44,25 +54,25 @@ export default function CursorFollower() {
           initial={{
             opacity: 0,
             scale: 0,
-            x: lastKnownPosition.current.x - 5,
-            y: lastKnownPosition.current.y - 5,
+            x: mousePosition.x - 4,
+            y: mousePosition.y - 60,
           }}
           animate={{
             opacity: 1,
             scale: 1,
-            x: mousePosition.x - 5,
-            y: mousePosition.y - 5,
+            x: mousePosition.x - 4,
+            y: mousePosition.y - 60,
           }}
           exit={{
             opacity: 0,
             scale: 0,
-            x: lastKnownPosition.current.x - 5,
-            y: lastKnownPosition.current.y - 5,
+            x: mousePosition.x - 4,
+            y: mousePosition.y - 60,
           }}
           transition={{
             type: "spring",
-            damping: 25,
-            stiffness: 300,
+            damping: 30,
+            stiffness: 350,
           }}
         />
       )}

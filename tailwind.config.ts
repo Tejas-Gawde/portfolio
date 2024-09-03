@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         anton: ["var(--font-anton)"],
+        montserrat: ["var(--font-montserrat)"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
