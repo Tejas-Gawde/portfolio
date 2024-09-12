@@ -1,5 +1,5 @@
 'use client'
-import { useRef } from "react";
+import { useRef, useLayoutEffect, useState } from "react";
 import {
   motion,
   useScroll,
@@ -28,21 +28,23 @@ export default function ParallaxText({ children, baseVelocity = 100 }: ParallaxP
     clamp: false
   });
 
-  /**
-   * This is a magic wrapping for the length of the text - you
-   * have to replace for wrapping that works for you or dynamically
-   * calculate
-   */
-  const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (containerRef.current) {
+      setContainerWidth(containerRef.current.offsetWidth);
+    }
+  }, [children]);
+
+  const numCopies = Math.ceil(containerWidth / (children.length * 20)) + 1; // Assuming each character is roughly 20px wide
+
+  const x = useTransform(baseX, (v) => `${wrap(-100, 0, v)}%`);
 
   const directionFactor = useRef<number>(1);
   useAnimationFrame((t, delta) => {
     let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
-    /**
-     * This is what changes the direction of the scroll once we
-     * switch scrolling directions.
-     */
     if (velocityFactor.get() < 0) {
       directionFactor.current = -1;
     } else if (velocityFactor.get() > 0) {
@@ -54,20 +56,15 @@ export default function ParallaxText({ children, baseVelocity = 100 }: ParallaxP
     baseX.set(baseX.get() + moveBy);
   });
 
-  /**
-   * The number of times to repeat the child text should be dynamically calculated
-   * based on the size of the text and viewport. Likewise, the x motion value is
-   * currently wrapped between -20 and -45% - this 25% is derived from the fact
-   * we have four children (100% / 4). This would also want deriving from the
-   * dynamically generated number of children.
-   */
   return (
-    <div className="flex flex-nowrap overflow-hidden">
-      <motion.div className="text-[200px] leading-normal h-fit flex flex-nowrap whitespace-nowrap gap-5" style={{ x }}>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
+    <div className="overflow-hidden" ref={containerRef}>
+      <motion.div
+        className="text-[200px] leading-normal h-fit flex flex-nowrap whitespace-nowrap gap-5"
+        style={{ x }}
+      >
+        {Array(numCopies).fill(null).map((_, index) => (
+          <span key={index}>{children} </span>
+        ))}
       </motion.div>
     </div>
   );

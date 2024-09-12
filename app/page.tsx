@@ -7,7 +7,7 @@ import SkillSection from "@/components/sections/SkillSection";
 
 export default function Home() {
   return (
-  <div className="w-screen">
+  <div className="">
       <Navbar/>
       <CursorFollower/>
       <HomeSection />

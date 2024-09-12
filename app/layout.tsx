@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Anton, Montserrat } from "next/font/google";
+import { ReactLenis } from '@/lib/lenis';
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,11 +27,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <ReactLenis root>
       <body
         className={`${inter.className} ${anton.variable} ${montserrat.variable}`}
       >
         {children}
       </body>
+      </ReactLenis>
     </html>
   );
 }
