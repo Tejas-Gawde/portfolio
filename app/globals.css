@@ -7,11 +7,23 @@
     --foreground-rgb: 255, 255, 255;
     --background-rgb: 5, 5, 5;
   }
+  /* body {
+    color: rgb(var(--foreground-rgb));
+    background: rgb(var(--background-rgb));
+  } */
 }
-
 
 ::selection {
   background-color: #000000;
   color: #ffffff;
 }
 
+.parallax {
+  overflow: hidden;
+  letter-spacing: -2px;
+  line-height: 0.8;
+  margin: 0;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+}
