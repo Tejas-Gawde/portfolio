@@ -2,7 +2,7 @@
 import { ReactElement, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-export default function Framer({
+export default function MagneticButtton({
   children,
   className,
 }: {

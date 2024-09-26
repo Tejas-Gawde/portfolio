@@ -1,6 +1,6 @@
 import AnimatedText from "../AnimatedText";
-import ParallaxText from "../ParallaxText";
-import AnimatedFlower from "../AnimatedFlower";
+import ParallaxText from "../home/ParallaxText";
+import AnimatedFlower from "../home/AnimatedFlower";
 
 export default function HeroSection() {
   return (
@@ -14,7 +14,7 @@ export default function HeroSection() {
           <AnimatedText>Developer</AnimatedText>
         </div>
       </div>
-      <ParallaxText baseVelocity={-3}>Tejas Gawde&nbsp; ‒&nbsp;</ParallaxText>
+      <ParallaxText baseVelocity={3}>Tejas Gawde&nbsp; ‒&nbsp;</ParallaxText>
     </section>
   );
 }

@@ -3,7 +3,7 @@ import { useInView, motion } from "framer-motion";
 import { useRef } from "react";
 
 const slideUp = {
-  open: (i) => ({
+  open: (i: number) => ({
     opacity: 1,
     y: "0%",
     transition: { duration: 0.3, delay: 0.01 * i },
@@ -23,7 +23,7 @@ export default function Description() {
   return (
     <div ref={description} className="mb-10 flex w-3/4 justify-center">
       <div className="relative flex gap-12">
-        <p className="gap-2 text-justify text-3xl leading-relaxed">
+        <p className="gap-2 text-justify text-3xl leading-normal">
           {phrase.split(" ").map((word, index) => (
             <span className="relative inline-flex overflow-hidden" key={index}>
               <motion.span
