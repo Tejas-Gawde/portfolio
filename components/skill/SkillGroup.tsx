@@ -8,6 +8,7 @@ import {
   SiNuxtdotjs,
   SiDjango,
   SiSupabase,
+  SiFastapi,
 } from "react-icons/si";
 import { FaGitAlt } from "react-icons/fa6";
 import { IoLogoVue } from "react-icons/io5";
@@ -19,7 +20,7 @@ import IconWrapper from "./IconWrapper";
 export default function SkillGroup() {
   return (
     <>
-      <div className="mb-5 flex gap-7">
+      <div className="mb-7 flex flex-wrap justify-center gap-7">
         <IconWrapper color="hsl(190, 98%, 49%)">
           <FaReact size={75} />
         </IconWrapper>
@@ -35,6 +36,9 @@ export default function SkillGroup() {
         <IconWrapper color="hsl(91, 60%, 51%)">
           <FaNodeJs size={75} />
         </IconWrapper>
+        <IconWrapper color="hsl(174, 94%, 31%)">
+          <SiFastapi size={75} />
+        </IconWrapper>
         <IconWrapper color="hsl(346, 75%, 51%)">
           <SiNestjs size={75} />
         </IconWrapper>
@@ -42,7 +46,7 @@ export default function SkillGroup() {
           <SiMongodb size={75} />
         </IconWrapper>
       </div>
-      <div className="flex gap-7">
+      <div className="flex flex-wrap justify-center gap-8">
         <IconWrapper color="hsl(204, 100%, 40%)">
           <SiTypescript size={75} />
         </IconWrapper>

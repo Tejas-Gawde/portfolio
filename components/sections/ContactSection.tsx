@@ -2,7 +2,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="h-screen snap-start flex items-center justify-center"
+      className="flex h-screen snap-start items-center justify-center"
     >
       ContactSection
     </section>

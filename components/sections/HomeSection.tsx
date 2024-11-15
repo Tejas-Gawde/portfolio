@@ -8,7 +8,7 @@ export default function HeroSection() {
       <div className="flex justify-end">
         <div className="w-2/3"></div>
         <div className="flex h-fit w-1/3 flex-col text-5xl">
-          <AnimatedFlower className="mb-5 w-fit text-7xl" />
+          <AnimatedFlower className="mb-5 w-fit select-none text-7xl" />
           <AnimatedText>Freelance</AnimatedText>
           <AnimatedText>Web & Mobile</AnimatedText>
           <AnimatedText>Developer</AnimatedText>

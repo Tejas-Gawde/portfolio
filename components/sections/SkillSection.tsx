@@ -5,7 +5,7 @@ import Description from "../skill/Description";
 
 export default function SkillSection() {
   return (
-    <section id="skill" className="mb-16 flex flex-col items-center">
+    <section id="skill" className="mb-32 flex flex-col items-center">
       <div className="flex w-3/4 justify-start">
         <MagneticButton className="mb-4">
           <Heading>Skills</Heading>

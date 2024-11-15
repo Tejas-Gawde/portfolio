@@ -50,7 +50,7 @@ export default function CursorFollower() {
     <AnimatePresence>
       {isVisible && isOnScreen && (
         <motion.div
-          className="pointer-events-none fixed z-50 h-2 w-2 rounded-full bg-black"
+          className="pointer-events-none fixed z-40 h-2 w-2 rounded-full bg-black"
           initial={{
             opacity: 0,
             scale: 0,

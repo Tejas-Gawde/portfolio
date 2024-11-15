@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        charcoalblack: "#0A0A0A",
+      },
       fontFamily: {
         anton: ["var(--font-anton)"],
         montserrat: ["var(--font-montserrat)"],

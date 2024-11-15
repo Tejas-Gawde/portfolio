@@ -22,7 +22,7 @@ export default function Description() {
 
   return (
     <div ref={description} className="mb-10 flex w-3/4 justify-center">
-      <div className="relative flex gap-12">
+      <div className="flex gap-12">
         <p className="gap-2 text-justify text-3xl leading-normal">
           {phrase.split(" ").map((word, index) => (
             <span className="relative inline-flex overflow-hidden" key={index}>
@@ -45,8 +45,7 @@ export default function Description() {
           className="w-[60%] text-lg font-light"
         >
           With a keen eye for aesthetics and a deep understanding of technology,
-          Crafting seamless, engaging experiences that push boundaries and
-          elevate digital presence.
+          Crafting seamless, engaging experiences that push boundaries.
         </motion.p>
       </div>
     </div>

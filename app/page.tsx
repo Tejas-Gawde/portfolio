@@ -7,13 +7,13 @@ import SkillSection from "@/components/sections/SkillSection";
 
 export default function Home() {
   return (
-  <div className="">
-      <Navbar/>
-      <CursorFollower/>
+    <>
+      <Navbar />
+      <CursorFollower />
       <HomeSection />
-      <SkillSection/>
-      <ProjectSection/>
-      <ContactSection/>
-  </div>
-)
+      <SkillSection />
+      <ProjectSection />
+      <ContactSection />
+    </>
+  );
 }
